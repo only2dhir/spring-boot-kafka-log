@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info" name="spring-boot-kafka-log" packages="com.devglan">
     <Appenders>
-        <Kafka name="Kafka" topic="devglan-log-test">
+        <Kafka name="Kafka" topic="devglan-test">
             <PatternLayout pattern="%date %message"/>
             <Property name="bootstrap.servers">localhost:9092</Property>
         </Kafka>
-        <!--This appender is synchronous by default and will block until the record has been acknowledged by the Kafka server,
-        timeout for this can be set with the timeout.ms property (defaults to 30 seconds).-->
         <Async name="Async">
             <AppenderRef ref="Kafka"/>
         </Async>
-        <!--stdout/stderr included for testing Oozie log4j edits-->
+
         <Console name="stdout" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5p [%-7t] %F:%L - %m%n"/>
         </Console>
